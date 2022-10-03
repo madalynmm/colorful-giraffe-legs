@@ -34,14 +34,25 @@ function getPasswordOptions() {
       return null;
     }
 
+  var hasLowerCase = confirm("Click OK to confirm including lowercase characters in your password.");
+
+  var hasUpperCase = confirm("Click OK to confirm including uppercase characters in your password.");
+
+  var hasNumericCharacters = confirm("Click OK to confirm including numeric characters in your password.");
+
   var hasSpecialCharacters = confirm("Click OK to confirm including special characters in your password.");
 
+    if (hasLowerCase && hasUpperCase && hasNumericCharacters && hasSpecialCharacters === false) {
+      return null;
+    }
 
   //Object to store user input:
   var passwordOptions = {
     length: length,
+    hasLowerCase: hasLowerCase,
+    hasUpperCase: hasUpperCase,
+    hasNumericCharacters: hasNumericCharacters,
     hasSpecialCharacters: hasSpecialCharacters,
-
   };
 
   return passwordOptions;
@@ -49,9 +60,22 @@ function getPasswordOptions() {
 
 
 function generatePassword() {
-   var options = getPasswordOptions();
-  //  code logic below?
-  return "password";
+  var options = getPasswordOptions();
+
+    if (options.hasLowerCase = true) {
+      var lowerCase = getRandom(lowerCaseCharacters);
+    }
+    if (options.hasUpperCase = true) {
+      var upperCase = getRandom(upperCaseCharacters);
+    }
+    if (options.hasNumericCharacters = true) {
+      var numChar = getRandom(numericCharacters);
+    }
+    if (options.hasSpecialCharacters = true) {
+      var specChar = getRandom(specialCharacters);
+    }
+  
+  
 }
 
 // Write password to the #password input
@@ -60,7 +84,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
